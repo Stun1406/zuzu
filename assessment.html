@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TO-CET Assessment — Talent Olive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --olive-dark: #1e3a0f;
+      --olive-mid: #2d5a1b;
+      --olive-light: #4a7c2f;
+      --olive-pale: #6ab04c;
+      --amber: #d4820a;
+      --amber-light: #f0a030;
+      --cream: #f4f1ea;
+      --cream-mid: #ede9e0;
+      --white: #ffffff;
+      --text-dark: #1a1a1a;
+      --text-mid: #3a3a3a;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --success: #16a34a;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.09);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== HEADER ===== */
+    .assessment-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .header-logo-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .header-divider {
+      width: 1px;
+      height: 28px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    .header-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--olive-light);
+      flex-shrink: 0;
+    }
+
+    .header-progress-area {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .q-counter {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .q-counter span {
+      color: var(--olive-dark);
+    }
+
+    .header-bar-wrap {
+      flex: 1;
+      height: 6px;
+      background: var(--cream-mid);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .header-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--olive-mid), var(--olive-pale));
+      border-radius: var(--radius-full);
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 5%;
+    }
+
+    .btn-exit {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-full);
+      background: var(--white);
+      color: var(--text-muted);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-exit:hover {
+      border-color: var(--olive-light);
+      color: var(--olive-dark);
+      background: var(--cream);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .assessment-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px 60px;
+    }
+
+    /* ===== SECTION CHIP ===== */
+    .section-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(74, 124, 47, 0.1);
+      color: var(--olive-light);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 5px 14px;
+      border-radius: var(--radius-full);
+      margin-bottom: 20px;
+      transition: opacity 0.3s;
+    }
+
+    /* ===== QUESTION CARD ===== */
+    .question-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md);
+      width: 100%;
+      max-width: 720px;
+      padding: 52px 56px;
+      animation: cardIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .question-text {
+      font-size: 1.42rem;
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--olive-dark);
+      margin-bottom: 36px;
+    }
+
+    /* ===== OPTIONS ===== */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .option-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 17px 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: left;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .option-card:hover {
+      border-color: var(--olive-pale);
+      background: rgba(74, 124, 47, 0.04);
+      transform: translateX(4px);
+    }
+
+    .option-card.selected {
+      border-color: var(--olive-mid);
+      background: rgba(45, 90, 27, 0.06);
+    }
+
+    .option-card.selected .option-radio {
+      background: var(--olive-mid);
+      border-color: var(--olive-mid);
+    }
+
+    .option-card.selected .option-radio::after {
+      opacity: 1;
+    }
+
+    .option-radio {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .option-radio::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      background: var(--white);
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .option-letter {
+      width: 30px;
+      height: 30px;
+      border-radius: var(--radius-sm);
+      background: var(--cream-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .option-card.selected .option-letter {
+      background: var(--olive-dark);
+      color: var(--white);
+    }
+
+    .option-label {
+      font-size: 0.97rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      line-height: 1.45;
+    }
+
+    /* ===== NAV BUTTONS ===== */
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .btn-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: var(--radius-full);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.93rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-back {
+      background: var(--cream);
+      color: var(--text-muted);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-back:hover:not(:disabled) {
+      background: var(--cream-mid);
+      color: var(--text-dark);
+    }
+
+    .btn-back:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-next {
+      background: var(--olive-dark);
+      color: var(--white);
+    }
+
+    .btn-next:hover:not(:disabled) {
+      background: var(--olive-mid);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(30, 58, 15, 0.3);
+    }
+
+    .btn-next:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-next.finish {
+      background: linear-gradient(135deg, var(--olive-dark), var(--olive-mid));
+    }
+
+    .skip-link {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+      background: none;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .skip-link:hover { color: var(--olive-light); }
+
+    /* ===== COMPLETION SCREEN ===== */
+    .completion-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 540px;
+      width: 100%;
+      animation: cardIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .completion-screen.visible { display: flex; }
+
+    .completion-icon {
+      width: 88px;
+      height: 88px;
+      background: linear-gradient(135deg, var(--success), #22c55e);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    .completion-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--olive-dark);
+      margin-bottom: 12px;
+    }
+
+    .completion-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .completion-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md);
+      padding: 32px 40px;
+      width: 100%;
+      margin-bottom: 28px;
+    }
+
+    .completion-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .stat-cell {
+      background: var(--white);
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--olive-dark);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .btn-report {
+      width: 100%;
+      padding: 16px;
+      background: var(--olive-dark);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-full);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-report:hover {
+      background: var(--olive-mid);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(30,58,15,0.3);
+    }
+
+    /* ===== SAVE & EXIT MODAL ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-box {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      transform: scale(0.92);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .modal-overlay.open .modal-box { transform: scale(1); }
+
+    .modal-icon {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--olive-dark);
+      margin-bottom: 8px;
+    }
+
+    .modal-body {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-modal {
+      flex: 1;
+      padding: 12px;
+      border-radius: var(--radius-full);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-modal-cancel {
+      background: var(--cream);
+      color: var(--text-muted);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-modal-cancel:hover { background: var(--cream-mid); }
+
+    .btn-modal-exit {
+      background: #dc2626;
+      color: var(--white);
+    }
+
+    .btn-modal-exit:hover {
+      background: #b91c1c;
+      transform: translateY(-1px);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 680px) {
+      .assessment-header { padding: 0 20px; gap: 12px; }
+      .header-label { display: none; }
+      .header-divider { display: none; }
+      .question-card { padding: 32px 24px; }
+      .question-text { font-size: 1.18rem; }
+      .completion-stats { grid-template-columns: repeat(3, 1fr); }
+      .completion-card { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="assessment-header">
+    <a href="index.html" class="header-logo">
+      <img src="img-logo.jpeg" alt="Talent Olive" class="header-logo-img" />
+    </a>
+    <div class="header-divider"></div>
+    <span class="header-label">TO-CET</span>
+
+    <div class="header-progress-area">
+      <span class="q-counter">Question <span id="q-current">1</span> of <span id="q-total">20</span></span>
+      <div class="header-bar-wrap">
+        <div class="header-bar-fill" id="progress-bar"></div>
+      </div>
+    </div>
+
+    <button class="btn-exit" onclick="openExitModal()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+      </svg>
+      Save & Exit
+    </button>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main class="assessment-main">
+
+    <!-- Active question view -->
+    <div id="question-view" style="width:100%;display:flex;flex-direction:column;align-items:center;">
+      <div class="section-chip" id="section-chip">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="section-name">Interests & Passions</span>
+      </div>
+
+      <div class="question-card">
+        <p class="question-text" id="question-text">Loading...</p>
+
+        <div class="options-grid" id="options-grid"></div>
+
+        <div class="nav-row">
+          <button class="btn-nav btn-back" id="btn-back" onclick="goBack()" disabled>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back
+          </button>
+
+          <button class="skip-link" onclick="skipQuestion()">Skip for now</button>
+
+          <button class="btn-nav btn-next" id="btn-next" onclick="goNext()" disabled>
+            Next
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Completion screen -->
+    <div class="completion-screen" id="completion-screen">
+      <div class="completion-icon">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h1 class="completion-title">Assessment Complete!</h1>
+      <p class="completion-sub">You've answered all 20 questions. Your personalised career report is being generated — it will be ready in a few minutes.</p>
+
+      <div class="completion-card">
+        <div class="completion-stats">
+          <div class="stat-cell">
+            <div class="stat-num">20</div>
+            <div class="stat-label">Questions Answered</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num" id="stat-time">—</div>
+            <div class="stat-label">Minutes Taken</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num">5</div>
+            <div class="stat-label">Dimensions Mapped</div>
+          </div>
+        </div>
+        <button class="btn-report" onclick="viewReport()">
+          View My Career Report &nbsp;→
+        </button>
+      </div>
+
+      <p style="font-size:0.8rem;color:var(--text-muted);">Your answers have been securely saved. You can close this tab.</p>
+    </div>
+
+  </main>
+
+  <!-- ===== SAVE & EXIT MODAL ===== -->
+  <div class="modal-overlay" id="exit-modal">
+    <div class="modal-box">
+      <div class="modal-icon">💾</div>
+      <h3 class="modal-title">Save your progress?</h3>
+      <p class="modal-body">Your answers so far will be saved. You can resume from where you left off when you come back.</p>
+      <div class="modal-actions">
+        <button class="btn-modal btn-modal-cancel" onclick="closeExitModal()">Keep Going</button>
+        <button class="btn-modal btn-modal-exit" onclick="saveAndExit()">Save & Exit</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== QUESTION BANK =====
+    const QUESTIONS = [
+      // Section 1 — Interests & Passions
+      {
+        section: 'Interests & Passions',
+        text: 'When you have free time, which activity do you enjoy the most?',
+        options: [
+          'Reading books, articles, or researching topics that interest me',
+          'Creating things — drawing, crafting, writing, or building',
+          'Spending time with people, talking, or helping others',
+          'Solving puzzles, playing strategy games, or figuring out how things work',
+        ]
+      },
+      {
+        section: 'Interests & Passions',
+        text: 'If you could spend a full day doing anything without any restrictions, you would:',
+        options: [
+          'Visit a science museum, planetarium, or technology expo',
+          'Attend a music concert, art exhibition, or theatre performance',
+          'Volunteer for a social cause or community project',
+          'Participate in a debate, quiz competition, or coding hackathon',
+        ]
+      },
+      {
+        section: 'Interests & Passions',
+        text: 'Which school subject makes you feel most alive and engaged?',
+        options: [
+          'Science — Biology, Chemistry, or Physics',
+          'Humanities — History, Languages, or Social Studies',
+          'Arts — Music, Visual Art, or Drama',
+          'Mathematics or Computer Science',
+        ]
+      },
+      {
+        section: 'Interests & Passions',
+        text: 'When you watch a movie or read a story, what interests you most?',
+        options: [
+          'The plot twists and how the mystery unfolds',
+          'The emotions and relationships between characters',
+          'The visual effects, costumes, and artistic details',
+          'The science, technology, or world-building behind the story',
+        ]
+      },
+      // Section 2 — Strengths & Skills
+      {
+        section: 'Strengths & Skills',
+        text: 'Friends and classmates often come to you when they need:',
+        options: [
+          'Help understanding a difficult concept or explaining something clearly',
+          'Someone to listen, support, or give emotional advice',
+          'Creative ideas for a project, event, or activity',
+          'A solution to a technical or logical problem',
+        ]
+      },
+      {
+        section: 'Strengths & Skills',
+        text: 'In a group project, which role do you naturally take on?',
+        options: [
+          'The researcher — gathering information and facts',
+          'The leader — organising the team and making sure everyone is on track',
+          'The creator — designing the visuals, writing the content, or building the prototype',
+          'The analyst — reviewing the work, spotting errors, and improving quality',
+        ]
+      },
+      {
+        section: 'Strengths & Skills',
+        text: 'Which type of task do you complete most confidently?',
+        options: [
+          'Writing an essay or report about a topic',
+          'Presenting or performing in front of an audience',
+          'Solving a set of maths or logic problems',
+          'Designing a poster, video, or creative project',
+        ]
+      },
+      {
+        section: 'Strengths & Skills',
+        text: 'When you make a mistake, your first instinct is to:',
+        options: [
+          'Analyse what went wrong and find the root cause',
+          'Ask someone more experienced for guidance',
+          'Try a completely different approach right away',
+          'Review and improve the process to prevent it happening again',
+        ]
+      },
+      // Section 3 — Learning Style
+      {
+        section: 'Learning Style',
+        text: 'You understand and remember things best when:',
+        options: [
+          'You read about it carefully and take detailed notes',
+          'Someone explains it to you in a conversation or lecture',
+          'You watch a video, diagram, or visual demonstration',
+          'You try it yourself with hands-on practice or experiments',
+        ]
+      },
+      {
+        section: 'Learning Style',
+        text: 'When learning something new, you prefer assignments that:',
+        options: [
+          'Have clear, step-by-step instructions to follow',
+          'Allow creative freedom to express your own ideas',
+          'Involve real-world problems to solve',
+          'Require deep research and independent exploration',
+        ]
+      },
+      {
+        section: 'Learning Style',
+        text: 'How do you prefer to work on challenging tasks?',
+        options: [
+          'Alone, so I can think deeply without distractions',
+          'With a partner — two heads are better than one',
+          'In a small group where everyone contributes ideas',
+          'With guidance from a mentor or teacher nearby',
+        ]
+      },
+      {
+        section: 'Learning Style',
+        text: 'If you could design your ideal classroom, it would have:',
+        options: [
+          'Lots of books, articles, and access to research databases',
+          'Labs, tools, and equipment for hands-on experiments',
+          'Open spaces for discussion, debate, and presentations',
+          'Technology, screens, and digital creative tools',
+        ]
+      },
+      // Section 4 — Work & Career Values
+      {
+        section: 'Work & Career Values',
+        text: 'Which is most important to you in a future career?',
+        options: [
+          'Making a meaningful difference in people\'s lives',
+          'Earning a high income and financial security',
+          'Doing creative and original work every day',
+          'Constantly learning new things and growing intellectually',
+        ]
+      },
+      {
+        section: 'Work & Career Values',
+        text: 'Imagine your future work environment. You would thrive best:',
+        options: [
+          'In an office or research setting, focused on analysis and strategy',
+          'Outdoors or in the field, actively doing and experiencing things',
+          'In a studio or lab, creating or experimenting',
+          'In schools, hospitals, or community spaces, working directly with people',
+        ]
+      },
+      {
+        section: 'Work & Career Values',
+        text: 'Which career goal resonates with you most?',
+        options: [
+          'Invent or build something that changes how the world works',
+          'Lead an organisation or start my own business',
+          'Help, heal, or educate other people',
+          'Create art, stories, or performances that move people',
+        ]
+      },
+      {
+        section: 'Work & Career Values',
+        text: 'How do you feel about routine and structure in your daily work?',
+        options: [
+          'I love routine — predictability helps me perform at my best',
+          'I prefer a mix — some structure but room for flexibility',
+          'I prefer variety — no two days should look the same',
+          'I need complete freedom to organise my own time and tasks',
+        ]
+      },
+      // Section 5 — Career Inclinations
+      {
+        section: 'Career Inclinations',
+        text: 'Which field sounds most exciting to explore as a career?',
+        options: [
+          'Science, Technology, Engineering, or Mathematics (STEM)',
+          'Medicine, Health, or Life Sciences',
+          'Business, Finance, Law, or Entrepreneurship',
+          'Arts, Media, Design, or Communication',
+        ]
+      },
+      {
+        section: 'Career Inclinations',
+        text: 'You read an inspiring news story about someone your age. They are:',
+        options: [
+          'Developing an AI app that helps farmers predict crop yields',
+          'Founding a non-profit that provides free education in rural areas',
+          'Winning a national debate championship and planning to study law',
+          'Releasing their first music album and performing at a major event',
+        ]
+      },
+      {
+        section: 'Career Inclinations',
+        text: 'When you imagine yourself at age 30, you see yourself:',
+        options: [
+          'In a lab, hospital, or research centre making scientific breakthroughs',
+          'Running my own company or leading a team at a major organisation',
+          'Teaching, counselling, or working in public service',
+          'Travelling the world as a journalist, artist, or explorer',
+        ]
+      },
+      {
+        section: 'Career Inclinations',
+        text: 'The legacy you most want to leave behind is:',
+        options: [
+          'A discovery or invention that advanced human knowledge',
+          'A business or institution that created opportunities for thousands',
+          'A community or movement that made the world fairer and kinder',
+          'A body of art, writing, or culture that people cherish for generations',
+        ]
+      },
+    ];
+
+    const TOTAL = QUESTIONS.length;
+    let currentIndex = 0;
+    let answers = new Array(TOTAL).fill(null);
+    let startTime = Date.now();
+
+    // ===== RENDER =====
+    function render() {
+      if (currentIndex >= TOTAL) {
+        showCompletion();
+        return;
+      }
+
+      const q = QUESTIONS[currentIndex];
+      document.getElementById('q-current').textContent = currentIndex + 1;
+      document.getElementById('q-total').textContent = TOTAL;
+      document.getElementById('section-name').textContent = q.section;
+      document.getElementById('question-text').textContent = q.text;
+
+      const progress = ((currentIndex) / TOTAL) * 100;
+      document.getElementById('progress-bar').style.width = Math.max(5, progress) + '%';
+
+      const grid = document.getElementById('options-grid');
+      grid.innerHTML = '';
+
+      const letters = ['A', 'B', 'C', 'D'];
+      q.options.forEach((opt, i) => {
+        const card = document.createElement('button');
+        card.className = 'option-card' + (answers[currentIndex] === i ? ' selected' : '');
+        card.innerHTML = `
+          <div class="option-radio"></div>
+          <div class="option-letter">${letters[i]}</div>
+          <span class="option-label">${opt}</span>
+        `;
+        card.addEventListener('click', () => selectOption(i));
+        grid.appendChild(card);
+      });
+
+      document.getElementById('btn-back').disabled = currentIndex === 0;
+      document.getElementById('btn-next').disabled = answers[currentIndex] === null;
+
+      const isLast = currentIndex === TOTAL - 1;
+      const nextBtn = document.getElementById('btn-next');
+      nextBtn.innerHTML = isLast
+        ? `Finish &nbsp;<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`
+        : `Next <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`;
+      nextBtn.className = 'btn-nav btn-next' + (isLast ? ' finish' : '');
+    }
+
+    function selectOption(index) {
+      answers[currentIndex] = index;
+      document.querySelectorAll('.option-card').forEach((card, i) => {
+        card.classList.toggle('selected', i === index);
+      });
+      document.getElementById('btn-next').disabled = false;
+    }
+
+    function goBack() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        animateCard(() => render());
+      }
+    }
+
+    function goNext() {
+      if (answers[currentIndex] === null) return;
+      if (currentIndex < TOTAL - 1) {
+        currentIndex++;
+        animateCard(() => render());
+      } else {
+        showCompletion();
+      }
+    }
+
+    function skipQuestion() {
+      if (currentIndex < TOTAL - 1) {
+        currentIndex++;
+        animateCard(() => render());
+      }
+    }
+
+    function animateCard(callback) {
+      const card = document.querySelector('.question-card');
+      if (!card) { callback(); return; }
+      card.style.transition = 'opacity 0.18s, transform 0.18s';
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(-10px)';
+      setTimeout(() => {
+        callback();
+        card.style.opacity = '';
+        card.style.transform = '';
+        card.style.transition = '';
+        // Re-trigger animation
+        card.classList.remove('animated');
+        void card.offsetWidth;
+        card.style.animation = 'cardIn 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
+      }, 180);
+    }
+
+    // ===== COMPLETION =====
+    function showCompletion() {
+      document.getElementById('question-view').style.display = 'none';
+      document.getElementById('progress-bar').style.width = '100%';
+      document.getElementById('q-current').textContent = TOTAL;
+
+      const elapsed = Math.round((Date.now() - startTime) / 60000);
+      document.getElementById('stat-time').textContent = elapsed || '< 1';
+
+      document.getElementById('completion-screen').classList.add('visible');
+
+      // Hide the exit button
+      document.querySelector('.btn-exit').style.display = 'none';
+    }
+
+    function viewReport() {
+      // Placeholder — in production this navigates to the generated report
+      alert('Your personalised career report is being prepared. You will receive it at your registered email address within a few minutes.');
+    }
+
+    // ===== EXIT MODAL =====
+    function openExitModal() {
+      document.getElementById('exit-modal').classList.add('open');
+    }
+
+    function closeExitModal() {
+      document.getElementById('exit-modal').classList.remove('open');
+    }
+
+    function saveAndExit() {
+      // Save progress to sessionStorage
+      sessionStorage.setItem('assessmentProgress', JSON.stringify({ currentIndex, answers }));
+      window.location.href = 'step5-assessment.html';
+    }
+
+    // Close modal on overlay click
+    document.getElementById('exit-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeExitModal();
+    });
+
+    // ===== KEYBOARD NAV =====
+    document.addEventListener('keydown', function(e) {
+      if (document.getElementById('exit-modal').classList.contains('open')) return;
+      if (e.key === 'ArrowRight' || e.key === 'Enter') {
+        if (!document.getElementById('btn-next').disabled) goNext();
+      }
+      if (e.key === 'ArrowLeft') {
+        if (!document.getElementById('btn-back').disabled) goBack();
+      }
+      const keyMap = { '1': 0, '2': 1, '3': 2, '4': 3 };
+      if (keyMap[e.key] !== undefined && currentIndex < TOTAL) {
+        selectOption(keyMap[e.key]);
+      }
+    });
+
+    // ===== INIT =====
+    render();
+  </script>
+</body>
+</html>
