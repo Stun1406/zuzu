@@ -65,12 +65,17 @@
       text-decoration: none;
       flex-shrink: 0;
     }
-
-    .header-logo-img {
-      height: 38px;
-      width: auto;
-      object-fit: contain;
+    .header-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: url('img-logo.jpeg') no-repeat top center;
+      background-size: 76px auto;
+      border-radius: 4px;
+      flex-shrink: 0;
     }
+    .header-logo-text { display: flex; flex-direction: column; line-height: 1.25; }
+    .header-logo-name { font-size: 0.95rem; font-weight: 700; color: var(--olive-dark); letter-spacing: -0.01em; }
+    .header-logo-tagline { font-size: 0.55rem; color: var(--text-muted); font-weight: 400; }
 
     .header-divider {
       width: 1px;
@@ -560,7 +565,11 @@
   <!-- ===== HEADER ===== -->
   <header class="assessment-header">
     <a href="index.html" class="header-logo">
-      <img src="img-logo.jpeg" alt="Talent Olive" class="header-logo-img" />
+      <div class="header-logo-icon"></div>
+      <div class="header-logo-text">
+        <span class="header-logo-name">Talent Olive</span>
+        <span class="header-logo-tagline">Know Your Talent. Choose Your Soil.</span>
+      </div>
     </a>
     <div class="header-divider"></div>
     <span class="header-label">TO-CET</span>

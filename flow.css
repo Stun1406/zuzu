@@ -72,8 +72,18 @@ img { display: block; max-width: 100%; }
   padding: 18px 48px 0;
   gap: 16px;
 }
-.flow-logo-link { display: flex; align-items: center; }
-.flow-logo { height: 54px; width: auto; object-fit: contain; }
+.flow-logo-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.flow-logo-icon {
+  width: 44px;
+  height: 44px;
+  background: url('img-logo.jpeg') no-repeat top center;
+  background-size: 82px auto;
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+.flow-logo-text { display: flex; flex-direction: column; line-height: 1.25; }
+.flow-logo-name { font-size: 1rem; font-weight: 700; color: var(--olive-dark); letter-spacing: -0.01em; }
+.flow-logo-tagline { font-size: 0.57rem; color: var(--text-muted); font-weight: 400; }
 
 .flow-title-block { text-align: center; }
 .flow-title-block h1 {

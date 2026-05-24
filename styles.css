@@ -201,19 +201,50 @@ img, svg { display: block; max-width: 100%; }
   gap: 32px;
 }
 
-/* Logo */
+/* Logo — horizontal: cropped icon + text */
 .nav-logo {
   display: flex;
   align-items: center;
+  gap: 10px;
   text-decoration: none;
   flex-shrink: 0;
 }
-.logo-img {
-  height: 52px;
-  width: auto;
-  object-fit: contain;
-  display: block;
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  margin-bottom: 16px;
 }
+.logo-icon {
+  width: 46px;
+  height: 46px;
+  background: url('img-logo.jpeg') no-repeat top center;
+  background-size: 86px auto;
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.logo-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--olive-dark);
+  letter-spacing: -0.01em;
+}
+.logo-tagline {
+  font-size: 0.59rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+/* Footer overrides — white container so JPEG bg blends on dark footer */
+.logo-icon-light { background-color: white; border-radius: 6px; }
+.logo-name-light { color: var(--white); }
+.logo-tagline-light { color: rgba(255,255,255,0.55); }
 
 /* Nav links */
 .nav-links {
@@ -985,24 +1016,7 @@ img, svg { display: block; max-width: 100%; }
 }
 
 /* Footer brand */
-.footer-logo {
-  display: inline-flex;
-  align-items: center;
-  margin-bottom: 16px;
-}
-.footer-logo-img-wrap {
-  background: var(--white);
-  border-radius: var(--radius-md);
-  padding: 6px 10px;
-  display: inline-flex;
-  align-items: center;
-}
-.footer-logo-img {
-  height: 44px;
-  width: auto;
-  object-fit: contain;
-  display: block;
-}
+.footer-desc { font-size: 0.8rem; line-height: 1.7; margin-bottom: 20px; }
 .footer-desc { font-size: 0.8rem; line-height: 1.7; margin-bottom: 20px; }
 
 /* Social links */
