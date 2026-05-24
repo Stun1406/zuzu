@@ -403,19 +403,6 @@ img, svg { display: block; max-width: 100%; }
   display: block;
 }
 
-/* Hero quote card — overlaid at bottom of image */
-.hero-quote {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: linear-gradient(to top, rgba(15, 31, 7, 0.92) 0%, rgba(30, 58, 15, 0.75) 100%);
-  color: var(--white);
-  padding: 24px 32px;
-  font-size: 0.95rem;
-  line-height: 1.7;
-  text-align: center;
-  backdrop-filter: blur(4px);
-}
-.quote-accent { color: var(--amber-light); font-style: italic; }
 
 /* ===== JOURNEY SECTION ===== */
 .journey {
