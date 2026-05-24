@@ -11,14 +11,10 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --olive-dark: #1e3a0f;
-      --olive-mid: #2d5a1b;
-      --olive-light: #4a7c2f;
-      --olive-pale: #6ab04c;
-      --amber: #d4820a;
-      --amber-light: #f0a030;
-      --cream: #f4f1ea;
-      --cream-mid: #ede9e0;
+      --primary: #7C3AED;
+      --primary-dark: #5B21B6;
+      --primary-pale: #EDE9FE;
+      --primary-bg: #F4F0FF;
       --white: #ffffff;
       --text-dark: #1a1a1a;
       --text-mid: #3a3a3a;
@@ -30,16 +26,14 @@
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 20px;
-      --radius-xl: 28px;
       --radius-full: 9999px;
     }
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: var(--cream);
+      background: var(--primary-bg);
       color: var(--text-dark);
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
@@ -49,53 +43,27 @@
       background: var(--white);
       border-bottom: 1px solid var(--border);
       padding: 0 40px;
-      height: 68px;
+      height: 64px;
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 20px;
       position: sticky;
       top: 0;
       z-index: 100;
       box-shadow: var(--shadow-sm);
     }
 
-    .header-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .header-logo-name {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      letter-spacing: -0.01em;
       text-decoration: none;
-      flex-shrink: 0;
-    }
-    .header-logo-icon {
-      width: 40px;
-      height: 40px;
-      background: url('img-logo.jpeg') no-repeat top center;
-      background-size: 76px auto;
-      border-radius: 4px;
-      flex-shrink: 0;
-    }
-    .header-logo-text { display: flex; flex-direction: column; line-height: 1.25; }
-    .header-logo-name { font-size: 0.95rem; font-weight: 700; color: var(--olive-dark); letter-spacing: -0.01em; }
-    .header-logo-tagline { font-size: 0.55rem; color: var(--text-muted); font-weight: 400; }
-
-    .header-divider {
-      width: 1px;
-      height: 28px;
-      background: var(--border);
-      flex-shrink: 0;
     }
 
-    .header-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--olive-light);
-      flex-shrink: 0;
-    }
+    .header-spacer { flex: 1; }
 
     .header-progress-area {
-      flex: 1;
       display: flex;
       align-items: center;
       gap: 14px;
@@ -109,24 +77,22 @@
       flex-shrink: 0;
     }
 
-    .q-counter span {
-      color: var(--olive-dark);
-    }
+    .q-counter span { color: var(--primary-dark); font-weight: 800; }
 
     .header-bar-wrap {
-      flex: 1;
+      width: 180px;
       height: 6px;
-      background: var(--cream-mid);
+      background: var(--primary-pale);
       border-radius: var(--radius-full);
       overflow: hidden;
     }
 
     .header-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--olive-mid), var(--olive-pale));
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
       border-radius: var(--radius-full);
       transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      width: 5%;
+      width: 1.2%;
     }
 
     .btn-exit {
@@ -147,48 +113,29 @@
     }
 
     .btn-exit:hover {
-      border-color: var(--olive-light);
-      color: var(--olive-dark);
-      background: var(--cream);
+      border-color: var(--primary);
+      color: var(--primary-dark);
     }
 
-    /* ===== MAIN CONTENT ===== */
+    /* ===== MAIN ===== */
     .assessment-main {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      overflow-y: auto;
-      padding: 24px 24px 32px;
-    }
-
-    /* ===== SECTION CHIP ===== */
-    .section-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(74, 124, 47, 0.1);
-      color: var(--olive-light);
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      padding: 5px 14px;
-      border-radius: var(--radius-full);
-      margin-bottom: 20px;
-      transition: opacity 0.3s;
+      padding: 40px 24px 48px;
     }
 
     /* ===== QUESTION CARD ===== */
     .question-card {
       background: var(--white);
-      border-radius: var(--radius-xl);
+      border-radius: 20px;
       box-shadow: var(--shadow-md);
       width: 100%;
-      max-width: 720px;
-      padding: 52px 56px;
+      max-width: 680px;
+      padding: 48px 52px;
       animation: cardIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
     }
 
     @keyframes cardIn {
@@ -196,59 +143,68 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .question-text {
-      font-size: 1.42rem;
-      font-weight: 700;
-      line-height: 1.45;
-      color: var(--olive-dark);
-      margin-bottom: 36px;
+    /* Purple circle with question number */
+    .q-number-circle {
+      width: 52px;
+      height: 52px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: white;
+      margin: 0 auto 24px;
     }
 
-    /* ===== OPTIONS ===== */
+    .question-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.6;
+      color: var(--text-dark);
+      text-align: center;
+      margin-bottom: 32px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ===== LIKERT OPTIONS ===== */
     .options-grid {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 40px;
+      gap: 10px;
+      margin-bottom: 32px;
     }
 
     .option-card {
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 17px 22px;
+      gap: 14px;
+      padding: 14px 20px;
       border: 2px solid var(--border);
       border-radius: var(--radius-lg);
       background: var(--white);
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      text-align: left;
       font-family: 'Poppins', sans-serif;
+      text-align: left;
     }
 
     .option-card:hover {
-      border-color: var(--olive-pale);
-      background: rgba(74, 124, 47, 0.04);
-      transform: translateX(4px);
+      border-color: var(--primary);
+      background: var(--primary-pale);
     }
 
     .option-card.selected {
-      border-color: var(--olive-mid);
-      background: rgba(45, 90, 27, 0.06);
-    }
-
-    .option-card.selected .option-radio {
-      background: var(--olive-mid);
-      border-color: var(--olive-mid);
-    }
-
-    .option-card.selected .option-radio::after {
-      opacity: 1;
+      border-color: var(--primary);
+      background: var(--primary-pale);
     }
 
     .option-radio {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       border: 2px solid var(--border);
       flex-shrink: 0;
@@ -256,112 +212,105 @@
       transition: all 0.2s;
     }
 
-    .option-radio::after {
+    .option-card.selected .option-radio {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .option-card.selected .option-radio::after {
       content: '';
       position: absolute;
       inset: 4px;
       border-radius: 50%;
-      background: var(--white);
-      opacity: 0;
-      transition: opacity 0.15s;
+      background: white;
     }
 
-    .option-letter {
-      width: 30px;
-      height: 30px;
+    .option-num-badge {
+      width: 28px;
+      height: 28px;
       border-radius: var(--radius-sm);
-      background: var(--cream-mid);
+      background: var(--primary-pale);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.78rem;
+      font-size: 0.82rem;
       font-weight: 700;
-      color: var(--text-muted);
+      color: var(--primary-dark);
       flex-shrink: 0;
       transition: all 0.2s;
     }
 
-    .option-card.selected .option-letter {
-      background: var(--olive-dark);
-      color: var(--white);
+    .option-card.selected .option-num-badge {
+      background: var(--primary-dark);
+      color: white;
     }
 
     .option-label {
-      font-size: 0.97rem;
+      font-size: 0.92rem;
       font-weight: 500;
       color: var(--text-mid);
-      line-height: 1.45;
+      line-height: 1.4;
     }
 
-    /* ===== NAV BUTTONS ===== */
+    /* ===== NAV ROW ===== */
     .nav-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
+    .q-progress-text {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
     .btn-nav {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 13px 28px;
+      padding: 12px 28px;
       border-radius: var(--radius-full);
       font-family: 'Poppins', sans-serif;
-      font-size: 0.93rem;
-      font-weight: 600;
+      font-size: 0.92rem;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
       border: none;
     }
 
     .btn-back {
-      background: var(--cream);
+      background: var(--white);
       color: var(--text-muted);
       border: 1.5px solid var(--border);
+      font-size: 0.82rem;
+      padding: 10px 20px;
     }
 
     .btn-back:hover:not(:disabled) {
-      background: var(--cream-mid);
-      color: var(--text-dark);
+      border-color: var(--primary);
+      color: var(--primary-dark);
     }
 
-    .btn-back:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
+    .btn-back:disabled { opacity: 0.3; cursor: not-allowed; }
 
     .btn-next {
-      background: var(--olive-dark);
-      color: var(--white);
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 16px rgba(124,58,237,0.3);
     }
 
     .btn-next:hover:not(:disabled) {
-      background: var(--olive-mid);
+      background: var(--primary-dark);
       transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(30, 58, 15, 0.3);
+      box-shadow: 0 6px 22px rgba(91,33,182,0.35);
     }
 
-    .btn-next:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
+    .btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
 
     .btn-next.finish {
-      background: linear-gradient(135deg, var(--olive-dark), var(--olive-mid));
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     }
-
-    .skip-link {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      cursor: pointer;
-      transition: color 0.2s;
-      background: none;
-      border: none;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .skip-link:hover { color: var(--olive-light); }
 
     /* ===== COMPLETION SCREEN ===== */
     .completion-screen {
@@ -369,7 +318,7 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      max-width: 540px;
+      max-width: 560px;
       width: 100%;
       animation: cardIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -379,7 +328,7 @@
     .completion-icon {
       width: 88px;
       height: 88px;
-      background: linear-gradient(135deg, var(--success), #22c55e);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -396,24 +345,24 @@
     .completion-title {
       font-size: 2rem;
       font-weight: 800;
-      color: var(--olive-dark);
+      color: var(--primary-dark);
       margin-bottom: 12px;
     }
 
     .completion-sub {
       font-size: 1rem;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.65;
       margin-bottom: 36px;
     }
 
     .completion-card {
       background: var(--white);
-      border-radius: var(--radius-xl);
+      border-radius: 20px;
       box-shadow: var(--shadow-md);
       padding: 32px 40px;
       width: 100%;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .completion-stats {
@@ -428,27 +377,27 @@
 
     .stat-cell {
       background: var(--white);
-      padding: 20px 16px;
+      padding: 20px 12px;
       text-align: center;
     }
 
     .stat-num {
       font-size: 1.6rem;
       font-weight: 800;
-      color: var(--olive-dark);
+      color: var(--primary-dark);
     }
 
     .stat-label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
     .btn-report {
       width: 100%;
       padding: 16px;
-      background: var(--olive-dark);
-      color: var(--white);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
       border: none;
       border-radius: var(--radius-full);
       font-family: 'Poppins', sans-serif;
@@ -456,12 +405,12 @@
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
+      box-shadow: 0 4px 18px rgba(124,58,237,0.3);
     }
 
     .btn-report:hover {
-      background: var(--olive-mid);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(30,58,15,0.3);
+      box-shadow: 0 8px 26px rgba(91,33,182,0.35);
     }
 
     /* ===== SAVE & EXIT MODAL ===== */
@@ -485,7 +434,7 @@
 
     .modal-box {
       background: var(--white);
-      border-radius: var(--radius-xl);
+      border-radius: 20px;
       padding: 40px;
       max-width: 420px;
       width: 90%;
@@ -496,15 +445,12 @@
 
     .modal-overlay.open .modal-box { transform: scale(1); }
 
-    .modal-icon {
-      font-size: 2.8rem;
-      margin-bottom: 16px;
-    }
+    .modal-icon { font-size: 2.8rem; margin-bottom: 16px; }
 
     .modal-title {
       font-size: 1.25rem;
       font-weight: 700;
-      color: var(--olive-dark);
+      color: var(--primary-dark);
       margin-bottom: 8px;
     }
 
@@ -515,10 +461,7 @@
       margin-bottom: 28px;
     }
 
-    .modal-actions {
-      display: flex;
-      gap: 12px;
-    }
+    .modal-actions { display: flex; gap: 12px; }
 
     .btn-modal {
       flex: 1;
@@ -533,32 +476,26 @@
     }
 
     .btn-modal-cancel {
-      background: var(--cream);
-      color: var(--text-muted);
-      border: 1.5px solid var(--border);
+      background: var(--primary-pale);
+      color: var(--primary-dark);
+      border: 1.5px solid var(--primary-pale);
     }
 
-    .btn-modal-cancel:hover { background: var(--cream-mid); }
+    .btn-modal-cancel:hover { background: #ddd6fe; }
 
     .btn-modal-exit {
       background: #dc2626;
-      color: var(--white);
+      color: white;
     }
 
-    .btn-modal-exit:hover {
-      background: #b91c1c;
-      transform: translateY(-1px);
-    }
+    .btn-modal-exit:hover { background: #b91c1c; transform: translateY(-1px); }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 680px) {
-      .assessment-header { padding: 0 20px; gap: 12px; }
-      .header-label { display: none; }
-      .header-divider { display: none; }
-      .question-card { padding: 32px 24px; }
-      .question-text { font-size: 1.18rem; }
-      .completion-stats { grid-template-columns: repeat(3, 1fr); }
-      .completion-card { padding: 24px 20px; }
+      .assessment-header { padding: 0 16px; gap: 12px; }
+      .header-bar-wrap { width: 100px; }
+      .question-card { padding: 32px 20px; }
+      .question-text { font-size: 1rem; }
     }
   </style>
 </head>
@@ -566,18 +503,12 @@
 
   <!-- ===== HEADER ===== -->
   <header class="assessment-header">
-    <a href="index.html" class="header-logo">
-      <div class="header-logo-icon"></div>
-      <div class="header-logo-text">
-        <span class="header-logo-name">Talent Olive</span>
-        <span class="header-logo-tagline">Know Your Talent. Choose Your Soil.</span>
-      </div>
-    </a>
-    <div class="header-divider"></div>
-    <span class="header-label">TO-CET</span>
+    <a href="index.html" class="header-logo-name">Talent Olive</a>
+
+    <div class="header-spacer"></div>
 
     <div class="header-progress-area">
-      <span class="q-counter">Question <span id="q-current">1</span> of <span id="q-total">20</span></span>
+      <span class="q-counter">Question <span id="q-current">1</span> of <span id="q-total">85</span></span>
       <div class="header-bar-wrap">
         <div class="header-bar-fill" id="progress-bar"></div>
       </div>
@@ -587,7 +518,7 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
       </svg>
-      Save & Exit
+      Save &amp; Exit
     </button>
   </header>
 
@@ -596,27 +527,21 @@
 
     <!-- Active question view -->
     <div id="question-view" style="width:100%;display:flex;flex-direction:column;align-items:center;">
-      <div class="section-chip" id="section-chip">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span id="section-name">Interests & Passions</span>
-      </div>
-
-      <div class="question-card">
+      <div class="question-card" id="question-card">
+        <div class="q-number-circle" id="q-number">1</div>
         <p class="question-text" id="question-text">Loading...</p>
 
         <div class="options-grid" id="options-grid"></div>
 
         <div class="nav-row">
           <button class="btn-nav btn-back" id="btn-back" onclick="goBack()" disabled>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-            Back
+            ← Back
           </button>
 
-          <button class="skip-link" onclick="skipQuestion()">Skip for now</button>
+          <span class="q-progress-text" id="q-progress-label">1 / 85</span>
 
           <button class="btn-nav btn-next" id="btn-next" onclick="goNext()" disabled>
-            Next
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            Next →
           </button>
         </div>
       </div>
@@ -628,12 +553,12 @@
         <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <h1 class="completion-title">Assessment Complete!</h1>
-      <p class="completion-sub">You've answered all 20 questions. Your personalised career report is being generated — it will be ready in a few minutes.</p>
+      <p class="completion-sub">You've answered all 85 questions. Your personalised career report is being generated — it will be ready in a few minutes.</p>
 
       <div class="completion-card">
         <div class="completion-stats">
           <div class="stat-cell">
-            <div class="stat-num">20</div>
+            <div class="stat-num">85</div>
             <div class="stat-label">Questions Answered</div>
           </div>
           <div class="stat-cell">
@@ -641,7 +566,7 @@
             <div class="stat-label">Minutes Taken</div>
           </div>
           <div class="stat-cell">
-            <div class="stat-num">5</div>
+            <div class="stat-num">6</div>
             <div class="stat-label">Dimensions Mapped</div>
           </div>
         </div>
@@ -663,222 +588,115 @@
       <p class="modal-body">Your answers so far will be saved. You can resume from where you left off when you come back.</p>
       <div class="modal-actions">
         <button class="btn-modal btn-modal-cancel" onclick="closeExitModal()">Keep Going</button>
-        <button class="btn-modal btn-modal-exit" onclick="saveAndExit()">Save & Exit</button>
+        <button class="btn-modal btn-modal-exit" onclick="saveAndExit()">Save &amp; Exit</button>
       </div>
     </div>
   </div>
 
   <script>
-    // ===== QUESTION BANK =====
+    // ===== 85 LIKERT QUESTIONS =====
     const QUESTIONS = [
-      // Section 1 — Interests & Passions
-      {
-        section: 'Interests & Passions',
-        text: 'When you have free time, which activity do you enjoy the most?',
-        options: [
-          'Reading books, articles, or researching topics that interest me',
-          'Creating things — drawing, crafting, writing, or building',
-          'Spending time with people, talking, or helping others',
-          'Solving puzzles, playing strategy games, or figuring out how things work',
-        ]
-      },
-      {
-        section: 'Interests & Passions',
-        text: 'If you could spend a full day doing anything without any restrictions, you would:',
-        options: [
-          'Visit a science museum, planetarium, or technology expo',
-          'Attend a music concert, art exhibition, or theatre performance',
-          'Volunteer for a social cause or community project',
-          'Participate in a debate, quiz competition, or coding hackathon',
-        ]
-      },
-      {
-        section: 'Interests & Passions',
-        text: 'Which school subject makes you feel most alive and engaged?',
-        options: [
-          'Science — Biology, Chemistry, or Physics',
-          'Humanities — History, Languages, or Social Studies',
-          'Arts — Music, Visual Art, or Drama',
-          'Mathematics or Computer Science',
-        ]
-      },
-      {
-        section: 'Interests & Passions',
-        text: 'When you watch a movie or read a story, what interests you most?',
-        options: [
-          'The plot twists and how the mystery unfolds',
-          'The emotions and relationships between characters',
-          'The visual effects, costumes, and artistic details',
-          'The science, technology, or world-building behind the story',
-        ]
-      },
-      // Section 2 — Strengths & Skills
-      {
-        section: 'Strengths & Skills',
-        text: 'Friends and classmates often come to you when they need:',
-        options: [
-          'Help understanding a difficult concept or explaining something clearly',
-          'Someone to listen, support, or give emotional advice',
-          'Creative ideas for a project, event, or activity',
-          'A solution to a technical or logical problem',
-        ]
-      },
-      {
-        section: 'Strengths & Skills',
-        text: 'In a group project, which role do you naturally take on?',
-        options: [
-          'The researcher — gathering information and facts',
-          'The leader — organising the team and making sure everyone is on track',
-          'The creator — designing the visuals, writing the content, or building the prototype',
-          'The analyst — reviewing the work, spotting errors, and improving quality',
-        ]
-      },
-      {
-        section: 'Strengths & Skills',
-        text: 'Which type of task do you complete most confidently?',
-        options: [
-          'Writing an essay or report about a topic',
-          'Presenting or performing in front of an audience',
-          'Solving a set of maths or logic problems',
-          'Designing a poster, video, or creative project',
-        ]
-      },
-      {
-        section: 'Strengths & Skills',
-        text: 'When you make a mistake, your first instinct is to:',
-        options: [
-          'Analyse what went wrong and find the root cause',
-          'Ask someone more experienced for guidance',
-          'Try a completely different approach right away',
-          'Review and improve the process to prevent it happening again',
-        ]
-      },
-      // Section 3 — Learning Style
-      {
-        section: 'Learning Style',
-        text: 'You understand and remember things best when:',
-        options: [
-          'You read about it carefully and take detailed notes',
-          'Someone explains it to you in a conversation or lecture',
-          'You watch a video, diagram, or visual demonstration',
-          'You try it yourself with hands-on practice or experiments',
-        ]
-      },
-      {
-        section: 'Learning Style',
-        text: 'When learning something new, you prefer assignments that:',
-        options: [
-          'Have clear, step-by-step instructions to follow',
-          'Allow creative freedom to express your own ideas',
-          'Involve real-world problems to solve',
-          'Require deep research and independent exploration',
-        ]
-      },
-      {
-        section: 'Learning Style',
-        text: 'How do you prefer to work on challenging tasks?',
-        options: [
-          'Alone, so I can think deeply without distractions',
-          'With a partner — two heads are better than one',
-          'In a small group where everyone contributes ideas',
-          'With guidance from a mentor or teacher nearby',
-        ]
-      },
-      {
-        section: 'Learning Style',
-        text: 'If you could design your ideal classroom, it would have:',
-        options: [
-          'Lots of books, articles, and access to research databases',
-          'Labs, tools, and equipment for hands-on experiments',
-          'Open spaces for discussion, debate, and presentations',
-          'Technology, screens, and digital creative tools',
-        ]
-      },
-      // Section 4 — Work & Career Values
-      {
-        section: 'Work & Career Values',
-        text: 'Which is most important to you in a future career?',
-        options: [
-          'Making a meaningful difference in people\'s lives',
-          'Earning a high income and financial security',
-          'Doing creative and original work every day',
-          'Constantly learning new things and growing intellectually',
-        ]
-      },
-      {
-        section: 'Work & Career Values',
-        text: 'Imagine your future work environment. You would thrive best:',
-        options: [
-          'In an office or research setting, focused on analysis and strategy',
-          'Outdoors or in the field, actively doing and experiencing things',
-          'In a studio or lab, creating or experimenting',
-          'In schools, hospitals, or community spaces, working directly with people',
-        ]
-      },
-      {
-        section: 'Work & Career Values',
-        text: 'Which career goal resonates with you most?',
-        options: [
-          'Invent or build something that changes how the world works',
-          'Lead an organisation or start my own business',
-          'Help, heal, or educate other people',
-          'Create art, stories, or performances that move people',
-        ]
-      },
-      {
-        section: 'Work & Career Values',
-        text: 'How do you feel about routine and structure in your daily work?',
-        options: [
-          'I love routine — predictability helps me perform at my best',
-          'I prefer a mix — some structure but room for flexibility',
-          'I prefer variety — no two days should look the same',
-          'I need complete freedom to organise my own time and tasks',
-        ]
-      },
-      // Section 5 — Career Inclinations
-      {
-        section: 'Career Inclinations',
-        text: 'Which field sounds most exciting to explore as a career?',
-        options: [
-          'Science, Technology, Engineering, or Mathematics (STEM)',
-          'Medicine, Health, or Life Sciences',
-          'Business, Finance, Law, or Entrepreneurship',
-          'Arts, Media, Design, or Communication',
-        ]
-      },
-      {
-        section: 'Career Inclinations',
-        text: 'You read an inspiring news story about someone your age. They are:',
-        options: [
-          'Developing an AI app that helps farmers predict crop yields',
-          'Founding a non-profit that provides free education in rural areas',
-          'Winning a national debate championship and planning to study law',
-          'Releasing their first music album and performing at a major event',
-        ]
-      },
-      {
-        section: 'Career Inclinations',
-        text: 'When you imagine yourself at age 30, you see yourself:',
-        options: [
-          'In a lab, hospital, or research centre making scientific breakthroughs',
-          'Running my own company or leading a team at a major organisation',
-          'Teaching, counselling, or working in public service',
-          'Travelling the world as a journalist, artist, or explorer',
-        ]
-      },
-      {
-        section: 'Career Inclinations',
-        text: 'The legacy you most want to leave behind is:',
-        options: [
-          'A discovery or invention that advanced human knowledge',
-          'A business or institution that created opportunities for thousands',
-          'A community or movement that made the world fairer and kinder',
-          'A body of art, writing, or culture that people cherish for generations',
-        ]
-      },
+      // Interests & Curiosity (1-15)
+      { section: 'Interests & Curiosity', text: 'I enjoy learning about how living organisms function.' },
+      { section: 'Interests & Curiosity', text: 'I find myself fascinated by the way machines and technology work.' },
+      { section: 'Interests & Curiosity', text: 'I love creating art, music, or stories in my free time.' },
+      { section: 'Interests & Curiosity', text: 'I enjoy solving complex mathematical problems.' },
+      { section: 'Interests & Curiosity', text: 'I like reading about historical events and their impact on society.' },
+      { section: 'Interests & Curiosity', text: 'I am curious about how the human mind and behaviour work.' },
+      { section: 'Interests & Curiosity', text: 'I enjoy exploring nature and understanding environmental systems.' },
+      { section: 'Interests & Curiosity', text: 'I find business and entrepreneurship exciting topics.' },
+      { section: 'Interests & Curiosity', text: 'I am drawn to understanding different cultures and languages.' },
+      { section: 'Interests & Curiosity', text: 'I enjoy watching documentaries about science and discovery.' },
+      { section: 'Interests & Curiosity', text: 'I like designing or building things with my hands.' },
+      { section: 'Interests & Curiosity', text: 'I find philosophy and big-picture thinking interesting.' },
+      { section: 'Interests & Curiosity', text: 'I enjoy competitive sports or physical activities.' },
+      { section: 'Interests & Curiosity', text: 'I am interested in law, justice, and how societies are governed.' },
+      { section: 'Interests & Curiosity', text: 'I like exploring and experimenting with new ideas.' },
+      // Strengths & Skills (16-30)
+      { section: 'Strengths & Skills', text: 'I find it easy to explain complex ideas to others in simple terms.' },
+      { section: 'Strengths & Skills', text: 'I am good at noticing small details that others often miss.' },
+      { section: 'Strengths & Skills', text: 'I enjoy leading and organising groups of people.' },
+      { section: 'Strengths & Skills', text: 'I am able to come up with creative solutions to problems.' },
+      { section: 'Strengths & Skills', text: 'I am comfortable with numbers, data, and statistics.' },
+      { section: 'Strengths & Skills', text: 'I can stay calm and focused under pressure.' },
+      { section: 'Strengths & Skills', text: 'I am good at understanding how others feel (empathy).' },
+      { section: 'Strengths & Skills', text: 'I enjoy writing and expressing my thoughts through words.' },
+      { section: 'Strengths & Skills', text: 'I can quickly learn and adapt to new tools or technologies.' },
+      { section: 'Strengths & Skills', text: 'I am good at planning and managing my time effectively.' },
+      { section: 'Strengths & Skills', text: 'I enjoy debating and making logical arguments.' },
+      { section: 'Strengths & Skills', text: 'I can motivate others and keep them engaged.' },
+      { section: 'Strengths & Skills', text: 'I am skilled at identifying patterns and trends in information.' },
+      { section: 'Strengths & Skills', text: 'I enjoy performing — whether acting, speaking, or presenting.' },
+      { section: 'Strengths & Skills', text: 'I am persistent when working on difficult challenges.' },
+      // Work Style & Environment (31-45)
+      { section: 'Work Style & Environment', text: 'I prefer working with people over working alone.' },
+      { section: 'Work Style & Environment', text: 'I like having a structured routine rather than variety every day.' },
+      { section: 'Work Style & Environment', text: 'I enjoy working outdoors or in active environments.' },
+      { section: 'Work Style & Environment', text: 'I prefer roles where I can be creative and express myself.' },
+      { section: 'Work Style & Environment', text: 'I would like a career that involves frequent travel.' },
+      { section: 'Work Style & Environment', text: 'I prefer deep focus on one task rather than juggling many.' },
+      { section: 'Work Style & Environment', text: 'I like working in fast-paced, high-energy environments.' },
+      { section: 'Work Style & Environment', text: 'I enjoy jobs that involve helping and supporting other people.' },
+      { section: 'Work Style & Environment', text: 'I prefer roles where I have clear goals and measurable outcomes.' },
+      { section: 'Work Style & Environment', text: 'I would be comfortable working in a laboratory or research setting.' },
+      { section: 'Work Style & Environment', text: 'I like jobs that involve physical activity or movement.' },
+      { section: 'Work Style & Environment', text: 'I prefer working in small, close-knit teams.' },
+      { section: 'Work Style & Environment', text: 'I enjoy roles where I can teach or mentor others.' },
+      { section: 'Work Style & Environment', text: 'I would thrive in an environment that rewards innovation.' },
+      { section: 'Work Style & Environment', text: 'I prefer stability and predictability over constant change.' },
+      // Values & Motivation (46-60)
+      { section: 'Values & Motivation', text: 'Making a positive difference in people\'s lives is important to me.' },
+      { section: 'Values & Motivation', text: 'Financial success and stability is a major career priority for me.' },
+      { section: 'Values & Motivation', text: 'I want a career that gives me creative freedom.' },
+      { section: 'Values & Motivation', text: 'Recognition and prestige matter to me in a profession.' },
+      { section: 'Values & Motivation', text: 'I want my work to contribute to scientific advancement.' },
+      { section: 'Values & Motivation', text: 'Work-life balance is more important to me than career advancement.' },
+      { section: 'Values & Motivation', text: 'I want to be my own boss someday.' },
+      { section: 'Values & Motivation', text: 'I care deeply about environmental sustainability.' },
+      { section: 'Values & Motivation', text: 'I want a career that keeps me intellectually challenged.' },
+      { section: 'Values & Motivation', text: 'Helping my community and society motivates me more than personal gain.' },
+      { section: 'Values & Motivation', text: 'I am driven by competition and outperforming others.' },
+      { section: 'Values & Motivation', text: 'I value careers that involve continuous learning and growth.' },
+      { section: 'Values & Motivation', text: 'I want to work in a field where I can be an expert or specialist.' },
+      { section: 'Values & Motivation', text: 'I am motivated by creating things that did not exist before.' },
+      { section: 'Values & Motivation', text: 'I want a career that allows me to work across different countries.' },
+      // Learning & Thinking Style (61-70)
+      { section: 'Learning & Thinking Style', text: 'I prefer learning by doing rather than by reading or listening.' },
+      { section: 'Learning & Thinking Style', text: 'I like to understand the "why" behind concepts, not just the "what."' },
+      { section: 'Learning & Thinking Style', text: 'I enjoy working on long-term projects that require deep thinking.' },
+      { section: 'Learning & Thinking Style', text: 'I prefer visual explanations (charts, diagrams) over text.' },
+      { section: 'Learning & Thinking Style', text: 'I like memorising facts and details accurately.' },
+      { section: 'Learning & Thinking Style', text: 'I enjoy brainstorming sessions more than working through set procedures.' },
+      { section: 'Learning & Thinking Style', text: 'I learn best when I can discuss ideas with others.' },
+      { section: 'Learning & Thinking Style', text: 'I prefer step-by-step instructions over open-ended exploration.' },
+      { section: 'Learning & Thinking Style', text: 'I enjoy researching and gathering information independently.' },
+      { section: 'Learning & Thinking Style', text: 'I can easily see connections between different subjects or ideas.' },
+      // Career Direction (71-85)
+      { section: 'Career Direction', text: 'I would enjoy working as a doctor, nurse, or healthcare professional.' },
+      { section: 'Career Direction', text: 'I could see myself working in software, tech, or AI.' },
+      { section: 'Career Direction', text: 'A career in teaching or education appeals to me.' },
+      { section: 'Career Direction', text: 'I am interested in working in media, journalism, or communications.' },
+      { section: 'Career Direction', text: 'I would enjoy working in the field of architecture or urban design.' },
+      { section: 'Career Direction', text: 'A career in research (science or social) excites me.' },
+      { section: 'Career Direction', text: 'I could see myself working in fashion, film, or the performing arts.' },
+      { section: 'Career Direction', text: 'I am interested in careers in finance, banking, or accounting.' },
+      { section: 'Career Direction', text: 'A career in agriculture, food science, or sustainability interests me.' },
+      { section: 'Career Direction', text: 'I could see myself working in social work or community development.' },
+      { section: 'Career Direction', text: 'A career in sports, fitness, or physical therapy appeals to me.' },
+      { section: 'Career Direction', text: 'I would enjoy working as an engineer (mechanical, civil, electrical, etc.).' },
+      { section: 'Career Direction', text: 'A career in law or policy-making interests me.' },
+      { section: 'Career Direction', text: 'I could see myself starting my own business or startup.' },
+      { section: 'Career Direction', text: 'A career in psychology, counselling, or mental health appeals to me.' },
     ];
 
-    const TOTAL = QUESTIONS.length;
+    const LIKERT_OPTIONS = [
+      { num: 1, label: 'Strongly Disagree' },
+      { num: 2, label: 'Disagree' },
+      { num: 3, label: 'Agree' },
+      { num: 4, label: 'Strongly Agree' },
+    ];
+
+    const TOTAL = QUESTIONS.length; // 85
     let currentIndex = 0;
     let answers = new Array(TOTAL).fill(null);
     let startTime = Date.now();
@@ -891,25 +709,27 @@
       }
 
       const q = QUESTIONS[currentIndex];
-      document.getElementById('q-current').textContent = currentIndex + 1;
-      document.getElementById('q-total').textContent = TOTAL;
-      document.getElementById('section-name').textContent = q.section;
-      document.getElementById('question-text').textContent = q.text;
+      const num = currentIndex + 1;
 
-      const progress = ((currentIndex) / TOTAL) * 100;
-      document.getElementById('progress-bar').style.width = Math.max(5, progress) + '%';
+      document.getElementById('q-current').textContent = num;
+      document.getElementById('q-total').textContent = TOTAL;
+      document.getElementById('q-number').textContent = num;
+      document.getElementById('question-text').textContent = q.text;
+      document.getElementById('q-progress-label').textContent = num + ' / ' + TOTAL;
+
+      const progress = (currentIndex / TOTAL) * 100;
+      document.getElementById('progress-bar').style.width = Math.max(1.2, progress) + '%';
 
       const grid = document.getElementById('options-grid');
       grid.innerHTML = '';
 
-      const letters = ['A', 'B', 'C', 'D'];
-      q.options.forEach((opt, i) => {
+      LIKERT_OPTIONS.forEach((opt, i) => {
         const card = document.createElement('button');
         card.className = 'option-card' + (answers[currentIndex] === i ? ' selected' : '');
         card.innerHTML = `
           <div class="option-radio"></div>
-          <div class="option-letter">${letters[i]}</div>
-          <span class="option-label">${opt}</span>
+          <div class="option-num-badge">${opt.num}</div>
+          <span class="option-label">${opt.label}</span>
         `;
         card.addEventListener('click', () => selectOption(i));
         grid.appendChild(card);
@@ -920,10 +740,9 @@
 
       const isLast = currentIndex === TOTAL - 1;
       const nextBtn = document.getElementById('btn-next');
-      nextBtn.innerHTML = isLast
-        ? `Finish &nbsp;<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`
-        : `Next <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`;
+      nextBtn.textContent = isLast ? 'Finish ✓' : 'Next →';
       nextBtn.className = 'btn-nav btn-next' + (isLast ? ' finish' : '');
+      if (answers[currentIndex] === null) nextBtn.disabled = true;
     }
 
     function selectOption(index) {
@@ -951,17 +770,10 @@
       }
     }
 
-    function skipQuestion() {
-      if (currentIndex < TOTAL - 1) {
-        currentIndex++;
-        animateCard(() => render());
-      }
-    }
-
     function animateCard(callback) {
-      const card = document.querySelector('.question-card');
+      const card = document.getElementById('question-card');
       if (!card) { callback(); return; }
-      card.style.transition = 'opacity 0.18s, transform 0.18s';
+      card.style.transition = 'opacity 0.15s, transform 0.15s';
       card.style.opacity = '0';
       card.style.transform = 'translateY(-10px)';
       setTimeout(() => {
@@ -969,11 +781,10 @@
         card.style.opacity = '';
         card.style.transform = '';
         card.style.transition = '';
-        // Re-trigger animation
-        card.classList.remove('animated');
+        card.style.animation = 'none';
         void card.offsetWidth;
         card.style.animation = 'cardIn 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
-      }, 180);
+      }, 150);
     }
 
     // ===== COMPLETION =====
@@ -986,13 +797,10 @@
       document.getElementById('stat-time').textContent = elapsed || '< 1';
 
       document.getElementById('completion-screen').classList.add('visible');
-
-      // Hide the exit button
       document.querySelector('.btn-exit').style.display = 'none';
     }
 
     function viewReport() {
-      // Placeholder — in production this navigates to the generated report
       alert('Your personalised career report is being prepared. You will receive it at your registered email address within a few minutes.');
     }
 
@@ -1006,12 +814,10 @@
     }
 
     function saveAndExit() {
-      // Save progress to sessionStorage
       sessionStorage.setItem('assessmentProgress', JSON.stringify({ currentIndex, answers }));
       window.location.href = 'step5-assessment.html';
     }
 
-    // Close modal on overlay click
     document.getElementById('exit-modal').addEventListener('click', function(e) {
       if (e.target === this) closeExitModal();
     });

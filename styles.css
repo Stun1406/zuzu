@@ -26,7 +26,7 @@
 
 /* ===== RESET & BASE ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; scroll-snap-type: y mandatory; overflow-y: scroll; height: 100%; }
+html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: 'Poppins', sans-serif;
   color: var(--text-dark);
@@ -301,7 +301,6 @@ img, svg { display: block; max-width: 100%; }
 /* ===== HERO SECTION ===== */
 .hero {
   height: 100vh;
-  scroll-snap-align: start;
   padding-top: var(--nav-h);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -420,15 +419,9 @@ img, svg { display: block; max-width: 100%; }
 
 /* ===== JOURNEY SECTION ===== */
 .journey {
-  height: 100vh;
-  scroll-snap-align: start;
-  overflow: hidden;
+  padding: 80px 0 64px;
   background: var(--white);
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 36px 0 28px;
 }
 .journey::before {
   content: '';
@@ -438,7 +431,7 @@ img, svg { display: block; max-width: 100%; }
   background: linear-gradient(90deg, var(--olive-mid), var(--amber), var(--olive-mid));
 }
 
-.section-header { text-align: center; margin-bottom: 36px; }
+.section-header { text-align: center; margin-bottom: 56px; }
 .section-title {
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   font-weight: 800;
@@ -651,7 +644,7 @@ img, svg { display: block; max-width: 100%; }
 .step-card:last-child .step-connector { display: none; }
 
 /* Journey CTA */
-.journey-cta { text-align: center; margin-top: 28px; }
+.journey-cta { text-align: center; margin-top: 40px; }
 .journey-tagline {
   font-size: 0.95rem;
   color: var(--olive-mid);
@@ -661,15 +654,9 @@ img, svg { display: block; max-width: 100%; }
 
 /* ===== ABOUT SECTION ===== */
 .about {
-  height: 100vh;
-  scroll-snap-align: start;
-  overflow: hidden;
+  padding: 80px 0;
   background: var(--cream);
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 40px 0;
 }
 
 .about-grid {
@@ -702,7 +689,7 @@ img, svg { display: block; max-width: 100%; }
 /* About image — real student photo, cropped to left (student) portion */
 .about-image { position: relative; }
 .about-img-real {
-  height: 290px;
+  height: 320px;
   border-radius: var(--radius-lg);
   background: url('img-about.jpeg') no-repeat;
   background-size: 240% auto;
@@ -749,13 +736,8 @@ img, svg { display: block; max-width: 100%; }
 
 /* ===== HELPS SECTION ===== */
 .helps {
-  height: 100vh;
-  scroll-snap-align: start;
-  overflow: hidden;
+  padding: 60px 0;
   background: var(--cream-dark);
-  display: flex;
-  align-items: center;
-  padding: 40px 0;
 }
 .helps-inner {
   background: linear-gradient(135deg, var(--olive-dark) 0%, var(--olive-mid) 100%);
@@ -798,14 +780,8 @@ img, svg { display: block; max-width: 100%; }
 
 /* ===== SELF-DISCOVERY SECTION ===== */
 .self-discovery {
-  height: 100vh;
-  scroll-snap-align: start;
-  overflow: hidden;
+  padding: 80px 0;
   background: var(--white);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 40px 0;
 }
 .discovery-grid {
   display: grid;
@@ -825,7 +801,7 @@ img, svg { display: block; max-width: 100%; }
 
 /* Self-discovery — real girl photo, cropped to the girl/path portion */
 .discovery-illustration {
-  height: 200px;
+  height: 220px;
   border-radius: var(--radius-md);
   background: url('img-self-discovery.jpeg') no-repeat;
   background-size: 300% auto;
@@ -897,14 +873,8 @@ img, svg { display: block; max-width: 100%; }
 
 /* ===== FOR SCHOOLS ===== */
 .for-schools {
-  height: 100vh;
-  scroll-snap-align: start;
-  overflow: hidden;
+  padding: 80px 0;
   background: linear-gradient(135deg, #f0f7e8 0%, var(--cream) 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 40px 0;
 }
 .schools-content {
   display: grid;
@@ -970,20 +940,10 @@ img, svg { display: block; max-width: 100%; }
 }
 .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
 
-/* ===== FINAL SECTION (newsletter + footer combined snap) ===== */
-.final-section {
-  height: 100vh;
-  scroll-snap-align: start;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-}
-
 /* ===== NEWSLETTER ===== */
 .newsletter {
   background: linear-gradient(135deg, var(--olive-dark), var(--olive-mid));
   padding: 48px 24px;
-  flex-shrink: 0;
 }
 .newsletter-inner {
   max-width: 900px;
